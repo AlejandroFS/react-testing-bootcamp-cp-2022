@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { render } from "@testing-library/react";
-import { screen } from "@testing-library/dom";
-
+import { screen, within } from "@testing-library/dom";
+import { todayDate } from "./components/Article/Article";
 import App from "./App";
 
 describe("Testing the initial page <App>", () => {
@@ -28,5 +28,16 @@ describe("Testing the initial page <App>", () => {
 
     const articleComponent = screen.getByRole("article");
     expect(articleComponent).toBeInTheDocument();
+  });
+
+  describe("Testing article component", () => {
+    it("should render a date input element with today's date", () => {
+      render(<App />);
+
+      const articleComponent = screen.getByRole("article");
+      const dateInputEl = within(articleComponent).getByLabelText('date-picker');
+      expect(dateInputEl).toBeInTheDocument();
+      expect(dateInputEl.value).toEqual(todayDate);
+    });
   });
 });
