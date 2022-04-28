@@ -1,4 +1,4 @@
-import React from 'react'
+import './Article.scss';
 
 const Article = () => {
   return (
