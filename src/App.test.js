@@ -22,4 +22,11 @@ describe("Testing the initial page <App>", () => {
     });
     expect(headerComponent).toBeInTheDocument();
   });
+
+  it("should render an article in the page", () => {
+    render(<App />);
+
+    const articleComponent = screen.getByRole("article");
+    expect(articleComponent).toBeInTheDocument();
+  });
 });

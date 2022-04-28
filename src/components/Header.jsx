@@ -1,8 +1,8 @@
 const Header = () => {
   return (
-    <div>
+    <header>
       <h1>James Webb Space Telescope - NASA</h1>
-    </div>
+    </header>
   );
 };
 

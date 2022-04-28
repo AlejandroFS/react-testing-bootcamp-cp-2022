@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <div>
+    <footer>
       <h3>Project created during Wizeline Academy React Testing Bootcamp</h3>
-    </div>
+    </footer>
   );
 };
 
