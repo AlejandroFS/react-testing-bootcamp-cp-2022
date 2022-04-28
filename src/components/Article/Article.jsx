@@ -5,7 +5,7 @@ import { useGetNasaData } from "./Hooks";
 export const todayDate = new Date().toISOString().slice(0, 10);
 const Article = () => {
   const [date, setDate] = useState(todayDate);
-  const dataResponse = useGetNasaData();
+  const dataResponse = useGetNasaData(date);
 
   return (
     <article>
@@ -16,7 +16,9 @@ const Article = () => {
         onChange={(event) => setDate(event.target.value)}
         value={date}
       />
-      {dataResponse && <img src={dataResponse.url} alt="nasa-img" />}
+      {dataResponse && (
+        <img src={dataResponse.url} alt="nasa-img" date={dataResponse.date} />
+      )}
     </article>
   );
 };
