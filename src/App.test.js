@@ -29,15 +29,4 @@ describe("Testing the initial page <App>", () => {
     const articleComponent = screen.getByRole("article");
     expect(articleComponent).toBeInTheDocument();
   });
-
-  describe("Testing article component", () => {
-    it("should render a date input element with today's date", () => {
-      render(<App />);
-
-      const articleComponent = screen.getByRole("article");
-      const dateInputEl = within(articleComponent).getByLabelText('date-picker');
-      expect(dateInputEl).toBeInTheDocument();
-      expect(dateInputEl.value).toEqual(todayDate);
-    });
-  });
 });
