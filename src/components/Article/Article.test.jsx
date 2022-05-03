@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { render } from "@testing-library/react";
-import { screen, within, waitFor, fireEvent } from "@testing-library/dom";
+import { screen, waitFor, fireEvent } from "@testing-library/dom";
 import { todayDate } from "./Article";
 import Article from "./Article";
 
@@ -20,7 +19,7 @@ describe("Testing article component", () => {
     expect(imgEle.src).not.toBeUndefined();
   });
 
-  it("should render a new picture from the user selection", async () => {
+  it("should show the picture of the day for the given date, When the user selects a specific date with the format YYYY-MM-DD", async () => {
     render(<Article />);
     await waitFor(() => screen.findByAltText("nasa-img"));
     const dateInputEl = screen.getByLabelText("date-picker");

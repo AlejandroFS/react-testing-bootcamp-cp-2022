@@ -17,7 +17,7 @@ const Article = () => {
         value={date}
       />
       {dataResponse && (
-        <img src={dataResponse.url} alt="nasa-img" date={dataResponse.date} />
+        <img src={dataResponse.url} alt="nasa-img" date={dataResponse.date} width="320px"/>
       )}
     </article>
   );
