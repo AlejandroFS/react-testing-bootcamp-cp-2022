@@ -13,6 +13,10 @@ export const handlers = [
         url: "https://apod.nasa.gov/apod/image/2204/defaultImage.jpg",
         status: 200,
       },
+      2056: {
+        url: undefined,
+        status: 400,
+      },
     };
     return res(
       ctx.status(dateLookUp[fullYear].status),

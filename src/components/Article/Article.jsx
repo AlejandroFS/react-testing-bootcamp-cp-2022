@@ -5,8 +5,7 @@ import { useGetNasaData } from "./Hooks";
 export const todayDate = "2022-03-03";
 const Article = () => {
   const [date, setDate] = useState(todayDate);
-  const dataResponse = useGetNasaData(date);
-
+  const [dataResponse, reqStatus] = useGetNasaData(date);
   return (
     <article>
       <input
@@ -17,8 +16,14 @@ const Article = () => {
         value={date}
       />
       {dataResponse && (
-        <img src={dataResponse.url} alt="nasa-img" date={dataResponse.date} width="320px"/>
+        <img
+          src={dataResponse.url}
+          alt="nasa-img"
+          date={dataResponse.date}
+          width="320px"
+        />
       )}
+      {reqStatus !== 200 && <h3>There was an error, please try again.</h3>}
     </article>
   );
 };

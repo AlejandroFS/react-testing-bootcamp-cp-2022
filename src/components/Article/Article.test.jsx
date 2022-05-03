@@ -31,4 +31,16 @@ describe("Testing article component", () => {
       );
     });
   });
+
+  it("should show a message When the app fetches the API, and there is an unexpected error", async () => {
+    render(<Article />);
+    await waitFor(() => screen.findByAltText("nasa-img"));
+    const dateInputEl = screen.getByLabelText("date-picker");
+    fireEvent.change(dateInputEl, { target: { value: "2056-05-12" } });
+
+    await waitFor(async () => {
+      const headingError = await screen.findByRole('heading');
+      expect(headingError).toHaveTextContent('There was an error, please try again.');
+    });
+  });
 });
