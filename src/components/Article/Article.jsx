@@ -2,7 +2,8 @@
 import { useState } from "react";
 import "./Article.scss";
 import { useGetNasaData } from "./Hooks";
-export const todayDate = "2022-03-03";
+export const todayDate = new Date().toISOString().slice(0, 10);
+
 const Article = () => {
   const [date, setDate] = useState(todayDate);
   const [dataResponse, reqStatus, apiErrorMsg] = useGetNasaData(date);
