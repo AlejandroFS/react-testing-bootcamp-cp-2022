@@ -1,8 +1,32 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+/* eslint-disable no-unused-vars */
+import { render } from "@testing-library/react";
+import { screen, within } from "@testing-library/dom";
+import { todayDate } from "./components/Article/Article";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Testing the initial page <App>", () => {
+  it("should render a title with text: 'James Webb Space Telescope - NASA'", () => {
+    render(<App />);
+
+    const headerComponent = screen.getByRole("heading", {
+      name: /James Webb Space Telescope - NASA/i,
+    });
+    expect(headerComponent).toBeInTheDocument();
+  });
+
+  it("should render a title with text: 'Project created during Wizeline Academy React Testing Bootcamp'", () => {
+    render(<App />);
+
+    const headerComponent = screen.getByRole("heading", {
+      name: /Project created during Wizeline Academy React Testing Bootcamp/i,
+    });
+    expect(headerComponent).toBeInTheDocument();
+  });
+
+  it("should render an article in the page", () => {
+    render(<App />);
+
+    const articleComponent = screen.getByRole("article");
+    expect(articleComponent).toBeInTheDocument();
+  });
 });
