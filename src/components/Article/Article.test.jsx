@@ -27,7 +27,7 @@ describe("Testing article component", () => {
     await waitFor(async () => {
       const tmpImage = await screen.findByAltText("nasa-img");
       expect(tmpImage.src).toEqual(
-        "https://apod.nasa.gov/apod/image/2204/newImage.jpg"
+        "https://apod.nasa.gov/apod/image/2204/oldImage.jpg"
       );
     });
   });
