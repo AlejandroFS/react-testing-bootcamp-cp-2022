@@ -16,17 +16,21 @@ describe("Testing article component", () => {
   it("should render the picture of the day in the img element", async () => {
     render(<Article />);
     await waitFor(() => screen.findByAltText("nasa-img"));
-    const imgEle = screen.getByAltText("nasa-img")
+    const imgEle = screen.getByAltText("nasa-img");
     expect(imgEle.src).not.toBeUndefined();
   });
 
-  it("should render a new picture of user selection from the date field", async () => {
+  it("should render a new picture from the user selection", async () => {
     render(<Article />);
     await waitFor(() => screen.findByAltText("nasa-img"));
-    const imgEl = screen.getByAltText("nasa-img")
     const dateInputEl = screen.getByLabelText("date-picker");
-    fireEvent.change(dateInputEl, { target: { value: '2020-05-12' } });
-    expect(imgEl.src).toStrictEqual("https://apod.nasa.gov/apod/image/2204/newImage.jpg")
-  });
+    fireEvent.change(dateInputEl, { target: { value: "2020-05-12" } });
 
+    await waitFor(async () => {
+      const tmpImage = await screen.findByAltText("nasa-img");
+      expect(tmpImage.src).toEqual(
+        "https://apod.nasa.gov/apod/image/2204/newImage.jpg"
+      );
+    });
+  });
 });
