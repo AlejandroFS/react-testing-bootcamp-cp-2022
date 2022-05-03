@@ -39,8 +39,24 @@ describe("Testing article component", () => {
     fireEvent.change(dateInputEl, { target: { value: "2056-05-12" } });
 
     await waitFor(async () => {
-      const headingError = await screen.findByRole('heading');
-      expect(headingError).toHaveTextContent('There was an error, please try again.');
+      const headingError = await screen.findByLabelText("user-error");
+      expect(headingError).toHaveTextContent(
+        "There was an error, please try again."
+      );
+    });
+  });
+
+  it("should show a message from the API response When the user selects an invalid date value and clicks on the show button", async () => {
+    render(<Article />);
+    await waitFor(() => screen.findByAltText("nasa-img"));
+    const dateInputEl = screen.getByLabelText("date-picker");
+    fireEvent.change(dateInputEl, { target: { value: "2056-05-12" } });
+
+    await waitFor(async () => {
+      const headingError = await screen.findByLabelText("api-error");
+      expect(headingError).toHaveTextContent(
+        "Date must be between Jun 16, 1995 and May 03, 2022."
+      );
     });
   });
 });

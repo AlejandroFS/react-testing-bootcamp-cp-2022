@@ -5,7 +5,7 @@ import { useGetNasaData } from "./Hooks";
 export const todayDate = "2022-03-03";
 const Article = () => {
   const [date, setDate] = useState(todayDate);
-  const [dataResponse, reqStatus] = useGetNasaData(date);
+  const [dataResponse, reqStatus, apiErrorMsg] = useGetNasaData(date);
   return (
     <article>
       <input
@@ -23,7 +23,12 @@ const Article = () => {
           width="320px"
         />
       )}
-      {reqStatus !== 200 && <h3>There was an error, please try again.</h3>}
+      {reqStatus !== 200 && (
+        <>
+          <h3 aria-label="user-error">There was an error, please try again.</h3>
+          <h3 aria-label="api-error">{apiErrorMsg}</h3>
+        </>
+      )}
     </article>
   );
 };
