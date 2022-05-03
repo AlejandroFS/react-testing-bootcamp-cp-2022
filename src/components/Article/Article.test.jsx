@@ -12,10 +12,9 @@ describe("Testing article component", () => {
     expect(dateInputEl.value).toEqual(todayDate);
   });
 
-  it("should render the picture of the day in the img element", async () => {
+  it("should show the Picture of the Day when the user enters the app,", async () => {
     render(<Article />);
-    await waitFor(() => screen.findByAltText("nasa-img"));
-    const imgEle = screen.getByAltText("nasa-img");
+    const imgEle = await waitFor(() => screen.findByAltText("nasa-img"));
     expect(imgEle.src).not.toBeUndefined();
   });
 
